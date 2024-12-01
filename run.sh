@@ -21,7 +21,7 @@ function error {
 
 set -e
 
-if [[ "$#" != 3 ]]; then
+if [[ "$#" < 3 ]]; then
     show_usage >&2
     exit 1
 fi
@@ -36,10 +36,10 @@ LANGDIR="$ROOTDIR/langs/$LANG"
 [[ -f "$LANGDIR/run.sh" ]] || error "'run.sh' driver not found for language: '$LANG'"
 
 PROBLEM=$2
-[[ -d "$DATA_DIR/$PROBLEM" ]] || error "Problem not found: '$PROBLEM'"
+[[ -d "$DATADIR/$PROBLEM" ]] || error "Problem not found: '$PROBLEM'"
 
 INPUT_TYPE=$3
-[[ -f "$DATA_DIR/${PROBLEM}/${INPUT_TYPE}.in" ]] || error "Input data for $PROBLEM not found: '$INPUT_TYPE'"
+[[ -f "$DATADIR/${PROBLEM}/${INPUT_TYPE}.in" ]] || error "Input data for $PROBLEM not found: '$INPUT_TYPE'"
 
 shift
 
